@@ -39,16 +39,28 @@
     {% if grade > 80 %}
     <div class="alert alert-success">
        <!--HINT Display passed info -->
+       <h4>Congratulations! You have passed the exam.</h4>
+           <p>Your score is {{ grade }}.</p>
     </div>
         {% else %}
         <div class="alert alert-danger">
             <!--HINT Display failed info -->
+        <h4>Sorry! You did not pass the exam.</h4>
+           <p>Your score is {{ grade }}.</p>
         </div>
         <a class="btn btn-link text-danger" href="{% url 'onlinecourse:course_details' course.id %}">Re-test</a>
         {% endif %}
         <div class="card-columns-vertical mt-1">
         <h5 class="">Exam results</h5>
             <!--HINT Display exam results-->
+            {% for choice in choices %}
+    <div class="card mt-1">
+        <div class="card-body">
+            {{ choice.question.content }}
+            <p>{{ choice.content }}</p>
+        </div>
+    </div>
+{% endfor %}
         </div>
     </div>
 </body>
